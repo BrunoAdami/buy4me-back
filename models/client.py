@@ -26,8 +26,8 @@ class Client(Base):
         return cls.query.filter_by(id=_id).first()
 
     @classmethod
-    def find_by_name(cls, name):
-        return cls.query.filter_by(name=name).first()
+    def find_by_username(cls, username):
+        return cls.query.filter_by(username=username).first()
 
     @classmethod
     def fetch(cls):
