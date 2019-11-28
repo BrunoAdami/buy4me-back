@@ -1,4 +1,5 @@
 from dao import db, Base
+from datetime import datetime
 
 
 class Client(Base):
@@ -7,12 +8,14 @@ class Client(Base):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     name = db.Column(db.String(120), nullable=False)
-    purchases = db.relationship('Purchase', bask_populates='client')
+    purchases = db.relationship('Purchase', back_populates='client')
+    created_at = db.Column(db.DateTime)
 
     def __init__(self, username, email, name):
         self.username = username
         self.email = email
         self.name = name
+        self.created_at = datetime.now()
 
     def add(self):
         db.session.add(self)
