@@ -2,11 +2,11 @@ from dao import db, Base
 from datetime import datetime
 
 
-class List(Base):
-    __tablename__ = 'lists'
+class PurchaseList(Base):
+    __tablename__ = 'purchaseList'
     id = db.Column(db.Integer, primary_key=True)
-    purchases = db.relationship('Purchase', back_populates='list')
-    items = db.relationship('ItemList', back_populates='list')
+    purchases = db.relationship('Purchase', back_populates='purchaseList')
+    items = db.relationship('ItemPurchaseList', back_populates='purchaseList')
     created_at = db.Column(db.DateTime)
 
     def __init__(self, purchases, items, created_at):
