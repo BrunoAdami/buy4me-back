@@ -2,15 +2,18 @@ from dao import db, Base
 from datetime import datetime
 
 
-class PurchaseList(Base):
-    __tablename__ = 'purchaseList'
+class Client(Base):
+    __tablename__ = 'client'
     id = db.Column(db.Integer, primary_key=True)
-    purchases = db.relationship('Purchase', back_populates='purchaseList')
-    items = db.relationship('ItemPurchaseList', back_populates='purchaseList')
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(120), nullable=False)
     created_at = db.Column(db.DateTime)
 
-    def __init__(self, purchases, items, created_at):
-        self.purchases = purchases
+    def __init__(self, username, email, name):
+        self.username = username
+        self.email = email
+        self.name = name
         self.created_at = datetime.now()
 
     def add(self):
@@ -22,8 +25,8 @@ class PurchaseList(Base):
         return cls.query.filter_by(id=_id).first()
 
     @classmethod
-    def find_by_name(cls, name):
-        return cls.query.filter_by(name=name).first()
+    def find_by_username(cls, username):
+        return cls.query.filter_by(username=username).first()
 
     @classmethod
     def fetch(cls):
