@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
+from resources.client_resource import ClientResource
 # from lista.resources.item_resource import ItemResource, ItensResource
 # from lista.resources.usuario_resource import UsuarioResource, UsuariosResource
 # from lista.resources.lista_resource import ListaResource, ListasResource
@@ -26,6 +27,8 @@ def create_tables():
 
 # api end-points:
 
+
+api.add_resource(ClientResource, '/client', '/client/<string:username>')
 
 # init database and run app
 if __name__ == '__main__':

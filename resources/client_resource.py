@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse, abort
 from flask import request
-from models.client import Client
-from schemas.clientSchema import ClientSchema
+from models import Client
+from schemas import ClientSchema
 
 
 class ClientResource(Resource):
@@ -50,7 +50,7 @@ class ClientResource(Resource):
                 client.add()
                 client = Client.find_by_username(data['username'])
 
-                client_schema = ClientSchema(exclude=['purchases'])
+                client_schema = ClientSchema()
                 json = client_schema.dump(client)
                 return json, 201
 
