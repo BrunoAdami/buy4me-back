@@ -3,6 +3,7 @@ from flask_cors import CORS
 from flask_restful import Api
 from resources.client_resource import ClientResource
 from resources.item_resource import ItemResource, ItemsResource
+from resources.deliver_resource import DeliverResource, AvailableDeliverResource
 # from lista.resources.usuario_resource import UsuarioResource, UsuariosResource
 # from lista.resources.lista_resource import ListaResource, ListasResource
 
@@ -31,6 +32,8 @@ def create_tables():
 api.add_resource(ClientResource, '/client', '/client/<string:username>')
 api.add_resource(ItemResource, '/item', '/item/<string:name>')
 api.add_resource(ItemsResource, '/items')
+api.add_resource(DeliverResource, '/deliver', '/deliver/<string:username>')
+api.add_resource(AvailableDeliverResource, '/available-deliver')
 
 # init database and run app
 if __name__ == '__main__':
