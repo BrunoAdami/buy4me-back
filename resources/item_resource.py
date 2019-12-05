@@ -52,3 +52,16 @@ class ItemResource(Resource):
         except Exception as ex:
             print(ex)
             return {"message": "erro"}, 500
+
+
+class ItemsResource(Resource):
+    def get(self):
+        json = []
+        try:
+            items = Item.fetch()
+            schema = ItemSchema(many=True)
+            json = schema.dump(items)
+        except Exception as e:
+            print(e)
+            return {"message": "Aconteceu um erro tentando retornar a lista de items."}, 500
+        return json, 201
