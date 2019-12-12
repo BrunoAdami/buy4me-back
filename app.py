@@ -39,4 +39,4 @@ api.add_resource(AvailableDeliverResource, '/available-deliver')
 if __name__ == '__main__':
     from dao import db
     db.init_app(app)
-    app.run(port=5000, debug=True)
+    app.run(port=5000, debug=True, host='0.0.0.0')
